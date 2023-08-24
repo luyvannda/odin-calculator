@@ -1,6 +1,6 @@
 :root {
   --main-gray: rgb(222, 221, 221);
-  --main-black: rgb(92, 91, 91);
+  --main-black: rgb(114, 113, 113);
   --main-gold: gold;
   --main-white: white;
 }
@@ -30,7 +30,14 @@ body {
 }
 
 .btn {
-  width: 4.2rem;
+  width: 4.5rem;
   height: 4.2rem;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.number {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  border: 1px solid var(--main-black);
+  border-radius: 5px;
 }
