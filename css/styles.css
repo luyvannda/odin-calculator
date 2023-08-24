@@ -1,8 +1,10 @@
 :root {
-  --main-gray: rgb(222, 221, 221);
+  --main-silver: rgb(222, 221, 221);
   --main-black: rgb(114, 113, 113);
-  --main-gold: gold;
+  --main-gold: rgb(255, 202, 30);
   --main-white: white;
+  --main-crimson: rgb(167, 43, 68);
+  --main-green: rgb(72, 221, 154);
 }
 
 * {
@@ -35,9 +37,33 @@ body {
   font-size: 1.5rem;
 }
 
+.decimal,
 .number {
   background-color: var(--main-black);
   color: var(--main-white);
   border: 1px solid var(--main-black);
   border-radius: 5px;
+}
+
+.operator {
+  background-color: var(--main-gold);
+  color: var(--main-white)
+}
+
+.gray-operator,
+.plus-minus {
+  background-color: var(--main-silver);
+  color: var(--main-black);
+}
+
+
+.equal,
+.clear,
+.back {
+  background-color: var(--main-crimson);
+  color: var(--main-white);
+}
+
+.btn:hover {
+  background-color: var(--main-green);
 }
