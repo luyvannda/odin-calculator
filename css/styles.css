@@ -1,5 +1,6 @@
 :root {
   --main-silver: rgb(222, 221, 221);
+  --main-light-silver: rgb(244, 243, 243);
   --main-black: rgb(114, 113, 113);
   --main-gold: rgb(255, 202, 30);
   --main-white: white;
@@ -31,10 +32,33 @@ body {
   height: 100vh;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 .btn {
   width: 4.5rem;
   height: 4.2rem;
   font-size: 1.5rem;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 4.6px;
+}
+
+.screen {
+  width: 18.75rem;
+  height: 4.2rem;
+  background-color: var(--main-light-silver);
+  border: 1px solid var(--main-light-silver);
+  border-radius: 5px;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .decimal,
