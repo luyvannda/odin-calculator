@@ -54,6 +54,18 @@ h1 {
   background-color: var(--main-light-silver);
   border: 1px solid var(--main-light-silver);
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.previous {
+  font-size: 0.8rem;
+}
+
+.current {
+  font-size: 1.2rem;
 }
 
 .first-row {
