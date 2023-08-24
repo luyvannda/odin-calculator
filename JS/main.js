@@ -1,3 +1,7 @@
+let operator = '';
+let currentValue = '';
+let previousValue = '';
+
 document.addEventListener("DOMContentLoaded", function () {
   // store all components on html in our JS
   let previousScreen = document.querySelector(".previous");
@@ -11,4 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let decimal = document.querySelector(".decimal");
   let equal = document.querySelector(".equal");
-})
+
+
+  numbers.forEach((number) => number.addEventListener(
+    "click", function (e) {
+      handleNumber(e.target.textContent);
+      currentScreen.textContent = currentValue;
+    }))
+});
+
+function handleNumber(num) {
+  if (currentValue.length <= 10) {
+    currentValue += num;
+  }
+}
