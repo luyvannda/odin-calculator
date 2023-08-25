@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     currentScreen.textContent = currentValue;
     previousScreen.textContent = '';
   })
+
+  equal.addEventListener("click", function () {
+    calculate();
+    previousScreen.textContent = '';
+    currentScreen.textContent = previousValue;
+  });
 });
 
 // outside function starts here
@@ -74,5 +80,56 @@ function handleBack() {
   if (currentValue.length > 0) {
     currentValue = currentValue
       .substring(0, currentValue.length - 1);
+  }
+};
+
+function calculate() {
+  previousValue = Number(previousValue);
+  currentValue = Number(currentValue);
+
+  switch (operator) {
+    case "/":
+      previousValue /= currentValue;
+      break;
+
+    case "x":
+      previousValue *= currentValue;
+      break;
+
+    case "+":
+      previousValue += currentValue;
+      break;
+
+    case "-":
+      previousValue -= currentValue;
+      break;
+
+    case "%":
+      previousValue = previousValue / 100;
+      break;
+
+    // for now "power" and "sqrt" is not working
+
+    case "power":
+      previousValue = Math.pow(previousValue, 2);
+      break;
+
+    case "sqrt":
+      previousValue = Math.sqrt(previousValue);
+    default:
+      break;
+  };
+
+  previousValue = roundNumber(previousValue);
+  previousValue = previousValue.toString();
+  currentValue = previousValue.toString();
+};
+
+
+function roundNumber(num) {
+  if (Number.isInteger(num)) {
+    return num;
+  } else {
+    return num.toFixed(5);
   }
 };
