@@ -1,10 +1,11 @@
 let operator = '';
 let currentValue = '';
 let previousValue = '';
+let previousScreen;
 
 document.addEventListener("DOMContentLoaded", function () {
   // store all components on html in our JS
-  let previousScreen = document.querySelector(".previous");
+  previousScreen = document.querySelector(".previous");
   let currentScreen = document.querySelector(".current");
 
   let clear = document.querySelector(".clear");
@@ -55,8 +56,15 @@ function handleNumber(num) {
 };
 
 function handleOperator(op) {
+  if (previousValue.length > 0
+    && currentValue.length == 0) {
+    operator = op;
+    previousScreen.textContent = previousValue + '' + operator;
+    return;
+  }
   operator = op;
   previousValue = currentValue;
+  currentValue = "";
 };
 
 function handleBack() {
