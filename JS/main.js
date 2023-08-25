@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   back.addEventListener("click", function () {
     handleBack();
     currentScreen.textContent = currentValue;
+    previousScreen.textContent = '';
   })
 });
 
@@ -56,15 +57,14 @@ function handleNumber(num) {
 function handleOperator(op) {
   operator = op;
   previousValue = currentValue;
-  currentValue = '';
 };
 
 function handleBack() {
+  currentValue = currentValue.trim();
+  operator = operator.trim();
+
   if (currentValue.length > 0) {
     currentValue = currentValue
       .substring(0, currentValue.length - 1);
-  } else if (operator.length > 0) {
-    operator = '';
-    previousValue = '';
   }
 };
