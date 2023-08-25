@@ -47,14 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   equal.addEventListener("click", function () {
-    calculate();
-    previousScreen.textContent = '';
-    if (previousValue.length <= 10) {
-      currentScreen.textContent = previousValue;
-    } else {
-      currentScreen.textContent =
-        previousValue.slice(0, 10) + "...";
-    };
+    if (currentValue != '' && previousValue != '') {
+      calculate();
+      previousScreen.textContent = '';
+      if (previousValue.length <= 10) {
+        currentScreen.textContent = previousValue;
+      } else {
+        currentScreen.textContent =
+          previousValue.slice(0, 10) + "...";
+      };
+    }
   });
 });
 
