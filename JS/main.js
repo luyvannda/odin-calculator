@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
   grayOperators.forEach((op) => op.addEventListener(
     "click", function (e) {
       instantOutput(e.target.value);
-      if (currentValue.length <= 10) {
+      if (currentValue.length <= 13) {
         currentScreen.textContent = currentValue;
       } else {
         currentScreen.textContent =
-          currentValue.slice(0, 10) + "...";
+          currentValue.slice(0, 13) + "...";
       };
     }));
 
@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentValue != '' && previousValue != '') {
       calculate();
       previousScreen.textContent = '';
-      if (previousValue.length <= 10) {
+      if (previousValue.length <= 13) {
         currentScreen.textContent = previousValue;
       } else {
         currentScreen.textContent =
-          previousValue.slice(0, 10) + "...";
+          previousValue.slice(0, 13) + "...";
       };
     }
   });
@@ -153,7 +153,11 @@ function instantOutput(operator) {
 
     case "sqrt":
       previousScreen.textContent = `sqrt(${currentValue})`
-      currentValue = Math.sqrt(currentValue);
+      if (currentValue >= 0) {
+        currentValue = Math.sqrt(currentValue);
+      } else {
+        currentValue = `Invalid Input`;
+      }
       break;
 
     case "negate":
@@ -169,12 +173,17 @@ function instantOutput(operator) {
 }
 
 function roundNumber(num) {
-  if (Number.isInteger(num)) {
-    return num;
+  if (typeof num === "number") {
+    if (Number.isInteger(num)) {
+      return num;
+    } else {
+      return Math.round(num * 100000) / 100000;
+    }
   } else {
-    return Math.round(num * 100000) / 100000;
+    return num;
   }
 };
+
 
 function addDecimal() {
 
