@@ -35,7 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
   grayOperators.forEach((op) => op.addEventListener(
     "click", function (e) {
       instantOutput(e.target.value);
-      currentScreen.textContent = currentValue;
+      if (currentValue.length <= 10) {
+        currentScreen.textContent = currentValue;
+      } else {
+        currentScreen.textContent =
+          currentValue.slice(0, 10) + "...";
+      };
     }));
 
 
@@ -51,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
   back.addEventListener("click", function () {
     handleBack();
     currentScreen.textContent = currentValue;
-    previousScreen.textContent = '';
   })
 
   equal.addEventListener("click", function () {
@@ -96,7 +100,9 @@ function handleBack() {
   currentValue = currentValue.trim();
   operator = operator.trim();
 
-  if (currentValue.length > 0) {
+  if (/[\/x+\-]/.test(currentValue)) {
+    return;
+  } else if (currentValue.length > 0) {
     currentValue = currentValue
       .substring(0, currentValue.length - 1);
   }
@@ -137,7 +143,7 @@ function instantOutput(operator) {
   switch (operator) {
     case "%":
       previousScreen.textContent = currentValue.toString() + "%";
-      currentValue = currentValue / 100;
+      currentValue = (currentValue / 100);
       break;
 
     case "power":
@@ -147,7 +153,7 @@ function instantOutput(operator) {
 
     case "sqrt":
       previousScreen.textContent = `sqrt(${currentValue})`
-      currentValue = Math.sqrt(currentValue).toFixed(4);
+      currentValue = Math.sqrt(currentValue);
       break;
 
     case "negate":
@@ -158,16 +164,15 @@ function instantOutput(operator) {
     default:
       break;
   }
+  currentValue = roundNumber(currentValue);
   currentValue = currentValue.toString();
 }
 
 function roundNumber(num) {
   if (Number.isInteger(num)) {
     return num;
-  } else if (num % 1 < 0.5) {
-    return num.toFixed(4);
   } else {
-    return Math.round(num * 100) / 100;
+    return Math.round(num * 100000) / 100000;
   }
 };
 
