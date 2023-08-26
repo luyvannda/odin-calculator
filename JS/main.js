@@ -147,7 +147,7 @@ function instantOutput(operator) {
 
     case "sqrt":
       previousScreen.textContent = `sqrt(${currentValue})`
-      currentValue = Math.sqrt(currentValue);
+      currentValue = Math.sqrt(currentValue).toFixed(4);
       break;
 
     case "negate":
