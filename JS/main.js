@@ -136,17 +136,22 @@ function instantOutput(operator) {
   currentValue = Number(currentValue);
   switch (operator) {
     case "%":
+      previousScreen.textContent = currentValue.toString() + "%";
       currentValue = currentValue / 100;
       break;
 
     case "power":
+      previousScreen.textContent = `${currentValue} ** 2`
       currentValue = Math.pow(currentValue, 2);
       break;
 
     case "sqrt":
+      previousScreen.textContent = `sqrt(${currentValue})`
       currentValue = Math.sqrt(currentValue);
+      break;
 
     case "negate":
+      previousScreen.textContent = `negate(${currentValue})`
       currentValue = -currentValue;
       break;
 
