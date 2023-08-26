@@ -2,11 +2,12 @@ let operator = '';
 let currentValue = '';
 let previousValue = '';
 let previousScreen;
+let currentScreen;
 
 document.addEventListener("DOMContentLoaded", function () {
   // store all components on html in our JS
   previousScreen = document.querySelector(".previous");
-  let currentScreen = document.querySelector(".current");
+  currentScreen = document.querySelector(".current");
 
   let clear = document.querySelector(".clear");
   let back = document.querySelector(".back");
@@ -16,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let decimal = document.querySelector(".decimal");
   let equal = document.querySelector(".equal");
-
 
   numbers.forEach((number) => number.addEventListener(
     "click", function (e) {
@@ -57,6 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
           previousValue.slice(0, 10) + "...";
       };
     }
+  });
+
+  decimal.addEventListener("click", function () {
+    addDecimal();
   });
 });
 
@@ -136,7 +140,17 @@ function calculate() {
 function roundNumber(num) {
   if (Number.isInteger(num)) {
     return num;
+  } else if (num % 1 < 0.5) {
+    return num.toFixed(4);
   } else {
-    return num.toFixed(5);
+    return Math.round(num * 100) / 100;
   }
 };
+
+function addDecimal() {
+
+  if (!currentValue.includes(".")) {
+    currentValue += ".";
+    currentScreen.textContent = currentValue;
+  }
+}
