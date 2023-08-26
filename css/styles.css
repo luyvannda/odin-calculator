@@ -86,8 +86,7 @@ h1 {
   color: var(--main-white)
 }
 
-.gray-operator,
-.plus-minus {
+.gray-operator {
   background-color: var(--main-silver);
   color: var(--main-black);
 }

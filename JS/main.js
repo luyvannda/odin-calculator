@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let back = document.querySelector(".back");
 
   let operators = document.querySelectorAll(".operator");
+  let grayOperators = document.querySelectorAll(".gray-operator");
   let numbers = document.querySelectorAll(".number");
 
   let decimal = document.querySelector(".decimal");
@@ -30,6 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
       previousScreen.textContent = previousValue + ' ' + operator;
       currentScreen.textContent = currentValue;
     }));
+
+  grayOperators.forEach((op) => op.addEventListener(
+    "click", function (e) {
+      instantOutput(e.target.value);
+      currentScreen.textContent = currentValue;
+    }));
+
 
   clear.addEventListener("click", function () {
     previousValue = '';
@@ -115,18 +123,6 @@ function calculate() {
       previousValue -= currentValue;
       break;
 
-    case "%":
-      previousValue = previousValue / 100;
-      break;
-
-    // for now "power" and "sqrt" is not working
-
-    case "power":
-      previousValue = Math.pow(previousValue, 2);
-      break;
-
-    case "sqrt":
-      previousValue = Math.sqrt(previousValue);
     default:
       break;
   };
@@ -136,6 +132,29 @@ function calculate() {
   currentValue = previousValue.toString();
 };
 
+function instantOutput(operator) {
+  currentValue = Number(currentValue);
+  switch (operator) {
+    case "%":
+      currentValue = currentValue / 100;
+      break;
+
+    case "power":
+      currentValue = Math.pow(currentValue, 2);
+      break;
+
+    case "sqrt":
+      currentValue = Math.sqrt(currentValue);
+
+    case "negate":
+      currentValue = -currentValue;
+      break;
+
+    default:
+      break;
+  }
+  currentValue = currentValue.toString();
+}
 
 function roundNumber(num) {
   if (Number.isInteger(num)) {
