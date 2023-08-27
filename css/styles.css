@@ -105,7 +105,8 @@ h1 {
   color: var(--main-white)
 }
 
-.gray-operator {
+.gray-operator,
+.negate {
   background-color: var(--main-silver);
   color: var(--main-black);
 }

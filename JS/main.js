@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let grayOperators = document.querySelectorAll(".gray-operator");
   let numbers = document.querySelectorAll(".number");
 
+  let negate = document.querySelector(".negate")
   let decimal = document.querySelector(".decimal");
   let equal = document.querySelector(".equal");
 
@@ -49,6 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
       equalPressed = false;
       grayPressed = true;
     }));
+
+  negate.addEventListener("click", function () {
+    addNegate();
+  });
 
 
   clear.addEventListener("click", function () {
@@ -195,11 +200,6 @@ function instantOutput(operator) {
       }
       break;
 
-    case "negate":
-      previousScreen.textContent = `negate(${currentValue})`
-      currentValue = -currentValue;
-      break;
-
     default:
       break;
   }
@@ -219,6 +219,13 @@ function roundNumber(num) {
   }
 };
 
+
+function addNegate() {
+  currentValue = Number(currentValue);
+  previousScreen.textContent = `negate(${currentValue})`
+  currentValue = -currentValue;
+  currentScreen.textContent = currentValue;
+}
 
 function addDecimal() {
 
