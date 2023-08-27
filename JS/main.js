@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "click", function (e) {
       handleOperator(e.target.textContent);
       previousScreen.textContent = previousValue + ' ' + operator;
-      currentScreen.textContent = currentValue;
     }));
 
   grayOperators.forEach((op) => op.addEventListener(
@@ -90,9 +89,18 @@ function handleOperator(op) {
     operator = op;
     previousScreen.textContent = previousValue + '' + operator;
     return;
-  }
+  };
+
+  // continue to calculate by pressing operator instead of equal
+  if (previousValue.length > 0
+    && currentValue.length > 0) {
+    previousScreen.textContent = previousValue + '' + operator;
+    calculate();
+  };
+
   operator = op;
   previousValue = currentValue;
+  currentScreen.textContent = currentValue;
   currentValue = "";
 };
 
