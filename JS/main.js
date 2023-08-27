@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   negate.addEventListener("click", function () {
     addNegate();
+    previousValue = currentValue;
+    currentScreen.textContent = currentValue;
   });
 
 
@@ -224,7 +226,6 @@ function addNegate() {
   currentValue = Number(currentValue);
   previousScreen.textContent = `negate(${currentValue})`
   currentValue = -currentValue;
-  currentScreen.textContent = currentValue;
 }
 
 function addDecimal() {
