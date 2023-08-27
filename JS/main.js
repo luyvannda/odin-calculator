@@ -3,6 +3,7 @@ let currentValue = '';
 let previousValue = '';
 let previousScreen;
 let currentScreen;
+let equalPressed;
 
 document.addEventListener("DOMContentLoaded", function () {
   // store all components on html in our JS
@@ -23,12 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
     "click", function (e) {
       handleNumber(e.target.textContent);
       currentScreen.textContent = currentValue;
+      equalPressed = false;
     }));
 
   operators.forEach((op) => op.addEventListener(
     "click", function (e) {
-      handleOperator(e.target.textContent);
+      handleOperator(e.target.value);
       previousScreen.textContent = previousValue + ' ' + operator;
+      equalPressed = false;
     }));
 
   grayOperators.forEach((op) => op.addEventListener(
@@ -40,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentScreen.textContent =
           currentValue.slice(0, 13) + "...";
       };
+      equalPressed = false;
     }));
 
 
@@ -49,12 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
     operator = '';
     previousScreen.textContent = previousValue;
     currentScreen.textContent = currentValue;
+    equalPressed = false;
   });
 
 
   back.addEventListener("click", function () {
     handleBack();
     currentScreen.textContent = currentValue;
+    equalPressed = false;
   })
 
   equal.addEventListener("click", function () {
@@ -67,17 +73,23 @@ document.addEventListener("DOMContentLoaded", function () {
         currentScreen.textContent =
           previousValue.slice(0, 13) + "...";
       };
+      equalPressed = true;
     }
   });
 
   decimal.addEventListener("click", function () {
     addDecimal();
+    equalPressed = false;
   });
 });
 
 // outside function starts here
 
 function handleNumber(num) {
+  if (equalPressed) {
+    currentValue = "";
+    operator = '';
+  };
   if (currentValue.length <= 10) {
     currentValue += num;
   }
@@ -92,7 +104,12 @@ function handleOperator(op) {
   };
 
   // continue to calculate by pressing operator instead of equal
-  if (previousValue.length > 0
+  if (equalPressed) {
+    currentValue = '';
+    operator = ''
+    operator = op;
+    return;
+  } else if (previousValue.length > 0
     && currentValue.length > 0) {
     previousScreen.textContent = previousValue + '' + operator;
     calculate();
