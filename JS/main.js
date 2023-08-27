@@ -4,6 +4,7 @@ let previousValue = '';
 let previousScreen;
 let currentScreen;
 let equalPressed;
+let grayPressed;
 
 document.addEventListener("DOMContentLoaded", function () {
   // store all components on html in our JS
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       handleNumber(e.target.textContent);
       currentScreen.textContent = currentValue;
       equalPressed = false;
+      grayPressed = false;
     }));
 
   operators.forEach((op) => op.addEventListener(
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       handleOperator(e.target.value);
       previousScreen.textContent = previousValue + ' ' + operator;
       equalPressed = false;
+      grayPressed = false;
     }));
 
   grayOperators.forEach((op) => op.addEventListener(
@@ -44,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
           currentValue.slice(0, 13) + "...";
       };
       equalPressed = false;
+      grayPressed = true;
     }));
 
 
@@ -54,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     previousScreen.textContent = previousValue;
     currentScreen.textContent = currentValue;
     equalPressed = false;
+    grayPressed = false;
   });
 
 
@@ -61,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     handleBack();
     currentScreen.textContent = currentValue;
     equalPressed = false;
+    grayPressed = false;
   })
 
   equal.addEventListener("click", function () {
@@ -74,22 +80,26 @@ document.addEventListener("DOMContentLoaded", function () {
           previousValue.slice(0, 13) + "...";
       };
       equalPressed = true;
+      grayPressed = false;
     }
   });
 
   decimal.addEventListener("click", function () {
     addDecimal();
     equalPressed = false;
+    grayPressed = false;
   });
 });
 
 // outside function starts here
 
 function handleNumber(num) {
-  if (equalPressed) {
+  if (equalPressed === true || grayPressed === true) {
     currentValue = "";
+    previousValue = "";
     operator = '';
   };
+
   if (currentValue.length <= 10) {
     currentValue += num;
   }
