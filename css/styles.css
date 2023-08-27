@@ -23,6 +23,24 @@ html {
   font-size: 16px;
 }
 
+@media (min-width: 1024px) {
+  html {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  html {
+    font-size: 11.5px;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -30,6 +48,7 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -38,7 +57,7 @@ h1 {
 
 .btn {
   width: 4.5rem;
-  height: 4.2rem;
+  height: 3.8rem;
   font-size: 1.5rem;
 }
 
@@ -101,4 +120,9 @@ h1 {
 
 .btn:hover {
   background-color: var(--main-green);
+}
+
+footer {
+  position: relative;
+  top: 2.2rem;
 }
