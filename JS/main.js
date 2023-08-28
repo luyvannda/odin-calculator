@@ -236,8 +236,11 @@ function addDecimal() {
     currentValue += "0.";
     currentScreen.textContent = currentValue;
     return;
-  } else if (!currentValue.includes(".")) {
+  } else if (!currentValue.includes(".") && currentValue.length > 0) {
     currentValue += ".";
+    currentScreen.textContent = currentValue;
+  } else {
+    currentValue += "0.";
     currentScreen.textContent = currentValue;
   }
 }
