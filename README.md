@@ -13,5 +13,4 @@ https://www.youtube.com/watch?v=Kyxvms8pnSU
 
 Extra thanks for image of calculator in our link preview.
 
-Image by <a href="https://pixabay.com/users/peggy_marco-1553824/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1889004">Peggy und Marco Lachmann-Anke</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1889004">Pixabay</a>
-
+Image by <a href="https://pixabay.com/users/shutterbug75-2077322/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1238598">Robert Owen-Wahl</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1238598">Pixabay</a>
