@@ -223,10 +223,18 @@ function roundNumber(num) {
 
 
 function addNegate() {
-  currentValue = Number(currentValue);
-  previousScreen.textContent = `negate(${currentValue})`
-  currentValue = -currentValue;
-  currentValue = currentValue.toString();
+
+  if (currentValue.length == 0) {
+    return;
+    // } else if (/[\/x+\-]/.test(previousValue)) {
+    // return;
+  } else {
+    currentValue = Number(currentValue);
+    previousScreen.textContent = `-${currentValue}`
+    currentValue = -currentValue;
+    currentValue = currentValue.toString();
+  }
+
 }
 
 function addDecimal() {
