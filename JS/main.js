@@ -226,11 +226,17 @@ function addNegate() {
   currentValue = Number(currentValue);
   previousScreen.textContent = `negate(${currentValue})`
   currentValue = -currentValue;
+  currentValue = currentValue.toString();
 }
 
 function addDecimal() {
-
-  if (!currentValue.includes(".")) {
+  if (equalPressed) {
+    currentValue = '';
+    previousValue = '';
+    currentValue += "0.";
+    currentScreen.textContent = currentValue;
+    return;
+  } else if (!currentValue.includes(".")) {
     currentValue += ".";
     currentScreen.textContent = currentValue;
   }
